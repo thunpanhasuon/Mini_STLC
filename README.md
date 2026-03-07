@@ -16,9 +16,6 @@ char *str_chr(const char *str, const char uc);
 char* str_cat(char* dest, const char* src);
 char *str_clone(const char *s);
 ```
-
----
-
 ## Vector
 
 A generic dynamic array inspired by `std::vector` from C++. Works with **any type** using `void*` — just like `malloc` hands you a raw address and trusts you to know what's there.
@@ -103,8 +100,4 @@ int main() {
 - [ ] Linked List
 - [ ] Hash Map
 - [ ] Stack / Queue
-- [ ] Human written tests
-
-
-
-
+- [ ] Human written tests :)

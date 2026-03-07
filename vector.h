@@ -6,54 +6,62 @@
 #include <string.h>
 #include <errno.h>
 
-extern int errno;
-
-
 typedef struct {
-    int status_err;
     void *data;
     size_t element_size;
     size_t size;
     size_t capacity;
 } Vector;
 
-
-/* 
- * vec_init
- * --------------------------
- * Creates and initializes a new dynamic array.
- * element_size: size of each element in bytes (e.g., sizeof(int))
- * capacity: initial number of elements the array can hold
- * Returns a pointer to the allocated array (void* internally)
+extern int errno;
+/**
+ * @file vector.h
+ * @brief A generic dynamic array (vector) implementation in C
  */
-Vector* vector_init(size_t element, size_t capacity);
 
- /* 
- * vec_push
- * --------------------------
- * Adds a new element to the end of the array.
- * a: pointer to the Array structure
- * element: pointer to the value to push
- * Returns 0 on success, non-zero on failure (e.g., memory allocation failed)
+/**
+ * @brief Initializes a new vector
+ * 
+ * @param element   Size of each element in bytes (use sizeof)
+ * @param capacity  Initial capacity of the vector
+ * @return          Pointer to the new vector, or NULL on failure
+ * 
+ * @example
+ *   Vector* v = vector_init(sizeof(int), 4);
  */
-int vector_push(Vector *vec, const void* element);
+Vector* vector_init(size_t element, size_t new_capacity);
 
-/* 
- * vec_get
- * --------------------------
- * Returns a pointer to the element at the given index.
- * a: pointer to the Array
- * index: position of the element (0-based)
- * Note: returned pointer must be cast to the correct type by the caller
+/**
+ * @brief Pushes an element to the end of the vector
+ * 
+ * @param vec     Pointer to the vector
+ * @param element Pointer to the element to push
+ * @return        0 on success, -1 on failure
+ */
+int vector_push(Vector* vec, const void* element);
+
+/**
+ * @brief Removes the last element
+ * 
+ * @param vec Pointer to the vector
+ * @return    0 on success, -1 if vector is empty
+ */
+int vector_pop_back(Vector* vec);
+
+/**
+ * @brief Gets element at index
+ * 
+ * @param vec   Pointer to the vector
+ * @param index Zero-based index
+ * @return      Pointer to element, or NULL if out of bounds
  */
 void* vector_get(Vector* vec, size_t index);
 
-/* 
- * vec_free
- * --------------------------
- * Frees all memory associated with the array.
- * a: pointer to the Array
- * After calling, the array should not be used again.
+/**
+ * @brief Frees all memory associated with the vector
+ * 
+ * @param vec Pointer to the vector
  */
-void vector_free(Vector *vec);
-#endif // VECTOR_H
+void vector_free(Vector* vec);
+
+#endif // VECTOR_H 
