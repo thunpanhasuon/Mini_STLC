@@ -55,7 +55,7 @@ vector_clear(vec);
 ```
 ### reserve
 ```c
-vector_reserve(vec);
+vector_reserve(vec, 10); /* res can be change to fit a person need */
 ```
 ### Free
 ```c
