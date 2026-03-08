@@ -48,7 +48,7 @@ if (is_empty(vec)) {
 } else {
     printf("false");
 }
-
+```
 ### pop_back
 ```c
 int vector_pop_back(Vector* vec);
